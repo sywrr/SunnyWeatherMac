@@ -16,6 +16,9 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        viewBinding true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -48,7 +51,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.5.0'
 
     //下拉刷新
-    implementation"androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
     //引入ViewModel组件
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'

@@ -10,7 +10,7 @@ import kotlin.coroutines.suspendCoroutine
 
 object SunnyWeatherNetwork {
 
-    private val placeService = ServiceCreator.create<PlaceService>()
+    private val placeService = ServiceCreator.create(PlaceService::class.java)
 
     suspend fun searchPlaces(query: String) = placeService.searchPlaces(query).await()
     private suspend fun <T> Call<T>.await(): T {
@@ -24,8 +24,9 @@ object SunnyWeatherNetwork {
                         continuation.resumeWithException(RuntimeException("body is null"))
                     }
                 }
+
                 override fun onFailure(call: Call<T>, t: Throwable) {
-                    RuntimeException(t)
+                    continuation.resumeWithException(t)
                 }
             })
         }
